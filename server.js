@@ -1,7 +1,11 @@
+let app = express();
+let cors = require('cors');
 let jwt = require('jsonwebtoken');
 let config = require('./middlewares/authMiddleware');
 const songs = require('./models/Song');
 const bodyParser = require('body-parser')
+let middleware = require('./middlewares/authMiddleware');
+let config = require('./config/index.js');
 
 class HandlerGenerator {
   login (res, req) {
@@ -54,9 +58,7 @@ class HandlerGenerator {
 
 function main () {
   let express = require('express');
-  let app = express();
   let port = process.env.PORT || 5000;
-  let cors = require('cors');
 
   app.use(cors());
   let handlers = new HandlerGenerator();
